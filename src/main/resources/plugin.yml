@@ -1,0 +1,24 @@
+name: MinecraftSSOPlugin
+version: '1.0.0'
+main: com.minecraft.ssoplugin.SSOPlugin
+api-version: '1.13'
+authors: [WindyPear-Team]
+description: Minecraft Spigot插件，实现对接SSO账号绑定功能
+commands:
+  ssobind:
+    description: SSO账号绑定指令
+    aliases: [sb]
+    usage: /ssobind - 查看绑定状态或获取绑定地址
+permissions:
+  ssoplugin.bind:
+    description: 允许玩家绑定SSO账号
+    default: true
+  ssoplugin.unbind:
+    description: 允许玩家解除SSO账号绑定
+    default: true
+  ssoplugin.admin:
+    description: 允许管理员管理SSO绑定
+    default: op
+    children:
+      ssoplugin.bind: true
+      ssoplugin.unbind: true

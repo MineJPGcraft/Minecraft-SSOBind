@@ -1,0 +1,90 @@
+# SSO绑定插件配置
+
+# 基本设置
+settings:
+  # 回调服务器监听的端口
+  callback_port: 8080
+  # 回调路径
+  callback_path: "/oauth/callback"
+  # 外部访问URL（必须包含协议、域名/IP和端口）
+  external_url: "http://your-server-ip:8080"
+
+# OAuth2设置
+oauth:
+  # OAuth提供者类型（目前仅支持generic）
+  provider: "generic"
+  # 授权URL
+  auth_url: "https://your-sso-server.com/oauth/authorize"
+  # 令牌URL
+  token_url: "https://your-sso-server.com/oauth/token"
+  # 用户信息URL
+  userinfo_url: "https://your-sso-server.com/api/userinfo"
+  # 客户端ID
+  client_id: "your-client-id"
+  # 客户端密钥
+  client_secret: "your-client-secret"
+  # 授权作用域（多个作用域用空格分隔）
+  scope: "profile email"
+
+# 用户数据字段配置
+user_fields:
+  # 用户ID字段（必须）
+  id_field: "id"
+  # 用户名字段
+  username_field: "name"
+  # 邮箱字段
+  email_field: "email"
+  # 自定义字段
+  custom_fields:
+    # 字段1
+    field1:
+      name: "昵称"
+      path: "profile.nickname"
+    # 字段2
+    field2:
+      name: "手机号"
+      path: "phone_number"
+    # 字段3
+    field3:
+      name: "部门"
+      path: "organization.department"
+
+# 数据库设置
+database:
+  # 数据库类型（sqlite或mysql）
+  type: "sqlite"
+  # SQLite设置
+  sqlite:
+    # 数据库文件路径
+    file: "plugins/MinecraftSSOPlugin/database.db"
+  # MySQL设置
+  mysql:
+    # 主机
+    host: "localhost"
+    # 端口
+    port: 3306
+    # 数据库名
+    database: "minecraft_sso"
+    # 用户名
+    username: "root"
+    # 密码
+    password: "your-password"
+    # 连接池设置
+    max_pool_size: 10
+    min_idle: 5
+    idle_timeout: 30000
+
+# 消息设置
+messages:
+  # 无权限消息
+  no_permission: "&c您没有权限执行此命令！"
+  # 未绑定消息
+  not_bound: "&e您尚未绑定SSO账号，请点击以下链接进行绑定：\n&b%bind_url%"
+  # 已绑定消息
+  already_bound: "&a您已绑定SSO账号：\n&e用户名：&f%username%\n&e邮箱：&f%email%\n\n&7使用 &f/ssobind unbind &7解除绑定"
+  # 绑定成功消息
+  bind_success: "&a绑定成功！您已成功绑定SSO账号：&f%username%"
+  # 绑定失败消息
+  bind_fail: "&c绑定失败：%reason%"
+  # 解绑成功消息
+  unbind_success: "&a解绑成功！您已成功解除SSO账号绑定。"
